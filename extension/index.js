@@ -1,4 +1,4 @@
-const API_ENDPOINT = 'http://192.168.1.26:8080';
+const API_URL = 'http://192.168.1.26:8080';
 
 (() => {
   if (window.albumCoverHasRun === true) {
@@ -18,7 +18,7 @@ const API_ENDPOINT = 'http://192.168.1.26:8080';
       if (mutations.at(-1).target.classList.contains('playing')) {
         const trackUrl = getTrackURL();
         const coverUrl = await getCoverURL(trackUrl);
-        await fetch(`${API_ENDPOINT}/cover?url=${coverUrl}`);
+        await fetch(`${API_URL}/cover?url=${coverUrl}`);
       }
     });
 
