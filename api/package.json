@@ -1,0 +1,25 @@
+{
+  "name": "bandcamp-album-cover-led",
+  "version": "0.1.0",
+  "description": "Display bandcamp album cover on a led matrix",
+  "type": "module",
+  "main": "src/index.ts",
+  "author": "taldrain",
+  "scripts": {
+    "dev": "tsx src/index.ts"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/koa": "^2.15.0",
+    "@types/koa__router": "^12.0.4",
+    "@types/node": "^22.9.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3"
+  },
+  "dependencies": {
+    "@koa/router": "^13.1.0",
+    "dotenv": "^16.4.5",
+    "koa": "^2.15.3",
+    "xdg-basedir": "^5.1.0"
+  }
+}

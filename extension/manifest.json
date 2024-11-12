@@ -1,0 +1,15 @@
+{
+  "manifest_version": 2,
+  "name": "album-cover-led",
+  "version": "0.1.0",
+
+  "description": "Send currently playing album to led matrix",
+
+  "content_scripts": [
+    {
+      "matches": ["https://*.bandcamp.com/*"],
+      "js": ["index.js"]
+    }
+  ]
+}
+
