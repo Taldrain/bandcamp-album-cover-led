@@ -12,9 +12,9 @@ const ledMatrix = new LedMatrix();
 
 router.get('/cover', async ctx => {
   const queryParams = new URLSearchParams(ctx.querystring);
-  const cover = queryParams.get('cover');
-  if (cover !== null) {
-    const coverPath = await coverCache.getPath(cover);
+  const url = queryParams.get('url');
+  if (url !== null) {
+    const coverPath = await coverCache.getPath(url);
     await ledMatrix.displayCover(coverPath);
   }
   ctx.status = 200;
