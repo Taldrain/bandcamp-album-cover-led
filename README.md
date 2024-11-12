@@ -33,7 +33,7 @@ Access the `extension/` folder and:
   - update the `extension/manifest.json` file with the IP of the host, in the
   `permissions` section.
   - update the `extensions/index.js` file and update the `API_URL` with the
-  same IP, with the port
+  same IP, and the port
 
 To load the extension on Firefox, open `about:debugging`, then `This Firefox`
 and `Load Temporary Add-on...` and select the `extension/manifest.json` file.
@@ -45,15 +45,16 @@ the `API_URL`.
 
 The extensions setup and observer on the Bandcamp artist page, ie: not on the
 collection page. Each time the class of the play button is updated it:
-    - check if the track is playing (presence of the `playing` class)
-    - fetch the track page (the album cover and track cover can be different)
-    - extract the album cover URL
-    - send it to the API_ENDPOINT `<host>:<port>/cover?url=<album_cover_url>`
+  - check if the track is playing (presence of the `playing` class)
+  - fetch the track page (the album cover and track cover can be different)
+  - extract the album cover URL send it to the API_URL `<host>:<port>/cover?url=<album_cover_url>`
 
 The API listen for the `/cover` endpoint and will:
-    - check if the cover has not already been downloaded, via the image filename
-    - if not, it will download it and store it on the `$XDG_DATA_HOME/bandcamp-album-cover-led` folder (note: the project runs as root, the cache folder will be in `root/.cache/`)
-    - send the image filepath to the `led-image-viewer` binary
+  - check if the cover has not already been downloaded, via the image filename
+  - if not, it will download it and store it on the
+  `$XDG_DATA_HOME/bandcamp-album-cover-led` folder (note: the project runs as
+  root, the cache folder will be in `root/.cache/`)
+  - send the image filepath to the `led-image-viewer` binary
 
 
 ## Todo
