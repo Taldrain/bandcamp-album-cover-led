@@ -1,0 +1,9 @@
+{
+  "name": "bandcamp-album-cover-extension",
+  "version": "0.1.0",
+  "main": "index.js",
+  "author": "taldrain",
+  "devDependencies": {
+    "web-ext": "^8.3.0"
+  }
+}

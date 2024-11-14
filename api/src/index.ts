@@ -19,6 +19,10 @@ router.get('/cover', async ctx => {
   }
   ctx.status = 200;
 });
+router.get('/clear', async ctx => {
+  ledMatrix.clear();
+  ctx.status = 200;
+});
 
 
 (async () => {

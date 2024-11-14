@@ -11,14 +11,19 @@ const API_URL = 'http://192.168.1.26:8080';
   function watchPlay() {
     const el = document.querySelector('div.playbutton');
     const observer = new MutationObserver(async (mutations) => {
+      const lastMutation = mutations.at(-1);
       // we have two events fired on play/pause
       // we'll use the last one
       //
       // the button is also updated when switching to a new track
-      if (mutations.at(-1).target.classList.contains('playing')) {
+      if (lastMutation.target.classList.contains('playing')) {
         const trackUrl = getTrackURL();
         const coverUrl = await getCoverURL(trackUrl);
         await fetch(`${API_URL}/cover?url=${coverUrl}`);
+      } else if (!lastMutation.target.classList.contains('busy')){
+        // we don't want to clear the cover when the button is busy
+        // eg: switching tracks
+        await fetch(`${API_URL}/clear`);
       }
     });
 
