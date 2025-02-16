@@ -1,19 +1,27 @@
 {
   "manifest_version": 2,
   "name": "album-cover-led",
-  "version": "0.3.0",
+  "version": "0.4.0",
 
   "description": "Send currently playing album to led matrix",
 
-  "content_scripts": [
-    {
-      "matches": ["https://*.bandcamp.com/*"],
-      "js": ["index.js"]
-    }
-  ],
+  "content_scripts": [{
+    "matches": ["https://*.bandcamp.com/*"],
+    "include_globs": ["https://*.bandcamp.com/*"],
+    "js": ["dist/main.album.js"]
+  }, {
+    "matches": ["https://bandcamp.com/*"],
+    "js": ["dist/main.collection.js"]
+  }],
 
   "permissions": [
     "http://192.168.1.26/*"
-  ]
+  ],
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "taldrain@gmail.com"
+    }
+  }
 }
 

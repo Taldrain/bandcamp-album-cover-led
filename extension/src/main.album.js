@@ -1,4 +1,4 @@
-const API_URL = 'http://192.168.1.26:8080';
+import { clear, draw } from './utils.js';
 
 (() => {
   if (window.albumCoverHasRun === true) {
@@ -6,12 +6,6 @@ const API_URL = 'http://192.168.1.26:8080';
   }
 
   window.albumCoverHasRun = true;
-
-  let timeoutId;
-  function debounceAPICall(url, timeout=2000) {
-    clearTimeout(timeoutId);
-    timeoutId = setTimeout(() => fetch(url), timeout);
-  }
 
   // check for the play button to change state by watching the class
   function watchPlay() {
@@ -26,11 +20,11 @@ const API_URL = 'http://192.168.1.26:8080';
         const trackUrl = getTrackURL();
         const coverUrl = await getCoverURL(trackUrl);
 
-        debounceAPICall(`${API_URL}/cover?url=${coverUrl}`, 1000)
+        draw(coverUrl);
       } else if (!lastMutation.target.classList.contains('busy')){
         // we don't want to clear the cover when the button is busy
         // eg: switching tracks
-        debounceAPICall(`${API_URL}/clear`, 2000);
+        clear();
       }
     });
 
