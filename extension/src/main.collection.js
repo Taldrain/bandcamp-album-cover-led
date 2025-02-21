@@ -6,9 +6,15 @@ import { clear, draw } from './utils.js';
   }
   window.collectionCoverHasRun = true;
 
+  let previousPlayObserver = null;
+
   function watchPlay() {
     const el = document.querySelector('div.carousel-player-inner div.playpause .pause');
-    const observer = new MutationObserver(async (mutations) => {
+    if (previousPlayObserver !== null) {
+      previousPlayObserver.disconnect();
+    }
+
+    previousPlayObserver = new MutationObserver(async (mutations) => {
       const lastMutation = mutations.at(-1);
 
       if (lastMutation.target.style.display != 'none') {
@@ -22,7 +28,7 @@ import { clear, draw } from './utils.js';
       }
     });
 
-    observer.observe(el, { attributes: true, attributeFilter: ['style'] });
+    previousPlayObserver.observe(el, { attributes: true, attributeFilter: ['style'] });
   }
 
   function getCoverURL() {
@@ -37,7 +43,6 @@ import { clear, draw } from './utils.js';
 
       if (lastMutation.target.classList.contains('show-player')) {
         watchPlay();
-        observer.disconnect();
       }
     });
 

@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "album-cover-led",
-  "version": "0.4.0",
+  "version": "0.4.1",
 
   "description": "Send currently playing album to led matrix",
 
