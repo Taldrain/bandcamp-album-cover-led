@@ -41,13 +41,14 @@ and `Load Temporary Add-on...` and select the `extension/manifest.json` file.
 When playing a track on Bandcamp, the extension will send the album cover to
 the `API_URL`.
 
+The `API_URL` can be configured on the extension settings page.
+
 ## Architecture
 
-The extensions setup and observer on the Bandcamp artist page, ie: not on the
-collection page. Each time the class of the play button is updated it:
-  - check if the track is playing (presence of the `playing` class)
-  - fetch the track page (the album cover and track cover can be different)
-  - extract the album cover URL send it to the API_URL `<host>:<port>/cover?url=<album_cover_url>`
+The extensions setup and observer on the Bandcamp artist page and collection
+page. Each time the script detect the track is playing, it will:
+  - retrieve or fetch the track info (the album cover and track cover can be different)
+  - extract the album cover URL send it to the API_URL `<API_URL>/cover?url=<album_cover_url>`
 
 The API listen for the `/cover` endpoint and will:
   - check if the cover has not already been downloaded, via the image filename
@@ -55,10 +56,3 @@ The API listen for the `/cover` endpoint and will:
   `$XDG_DATA_HOME/bandcamp-album-cover-led` folder (note: the project runs as
   root, the cache folder will be in `root/.cache/`)
   - send the image filepath to the `led-image-viewer` binary
-
-
-## Todo
-
-- Clear the LED matrix when the track is paused/stopped/tab is closed
-- Send the track url to the API, which could cache it instead of the image to reduce one fetch. The html will need to be parsed (eg: via `jsdom`)
-- Cleaner API endpoint definition in the extension, we should not have to update the `manifest.json` and `index.js` files

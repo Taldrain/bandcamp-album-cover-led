@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "album-cover-led",
-  "version": "0.4.1",
+  "version": "0.5.0",
 
   "description": "Send currently playing album to led matrix",
 
@@ -14,13 +14,19 @@
     "js": ["dist/main.collection.js"]
   }],
 
+  "options_ui": {
+    "page": "dist/options.html"
+  },
+
   "permissions": [
-    "http://192.168.1.26/*"
+    "storage",
+    "http://*/*",
+    "https://*/*"
   ],
 
   "browser_specific_settings": {
     "gecko": {
-      "id": "taldrain@gmail.com"
+      "id": "album.cover.led@taldra.in"
     }
   }
 }
