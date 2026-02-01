@@ -39,4 +39,10 @@ export default class CoverCache {
 
     return filepath;
   }
+
+  public async saveBinaryImage(filename: string, buffer: Buffer): Promise<string> {
+    const filepath = join(this.folder, filename);
+    await writeFile(filepath, buffer);
+    return filepath;
+  }
 }
